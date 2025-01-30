@@ -1,16 +1,16 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-TOKEN = "7889429106:AAEa73H5yR4kdVHj3jYevxgeFlUT15wviAQ"  # Yahan apna bot token daalein
-OWNER_ID = "https://t.me/@Anshtrader12"  # Owner ka direct Telegram link
-VIP_CHANNEL = ""https://t.me/YOUR_VIP_CHANNEL"  "  # VIP Channel ka link
+TOKEN = "YOUR_BOT_TOKEN"  # Yahan apna bot token daalein
+OWNER_ID = "@Anshtrader12"  # Owner ka Telegram username (not link)
+VIP_CHANNEL = "https://t.me/your_vip_channel_link"  # VIP Channel ka actual link
 PUBLIC_CHANNEL = "https://t.me/learnansh87"  # Public Channel ka link
 
 def start(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     
-    # Welcome Image
-    image_url = "https://files.catbox.moe/f5skhs.jpg"  # Yahan apni image ka URL daalein
+    # Welcome Image (replace with your image URL)
+    image_url = "https://your-image-url.com/image.jpg"  # Yahan apni image ka URL daalein
     context.bot.send_photo(chat_id=chat_id, photo=image_url)
 
     # Welcome Message
@@ -18,7 +18,7 @@ def start(update: Update, context: CallbackContext):
 
     # Buttons
     keyboard = [
-        [InlineKeyboardButton("👤 Contact Owner", url=OWNER_ID)],  
+        [InlineKeyboardButton("👤 Contact Owner", url=f"tg://user?id={OWNER_ID}")],  
         [InlineKeyboardButton("🌟 VIP Channel", url=VIP_CHANNEL)],  
         [InlineKeyboardButton("📢 Public Channel", url=PUBLIC_CHANNEL)]
     ]
