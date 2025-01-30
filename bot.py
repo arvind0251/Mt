@@ -1,16 +1,16 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import Updater, CommandHandler, CallbackContext, CallbackQueryHandler
 
-TOKEN = "7889429106:AAEa73H5yR4kdVHj3jYevxgeFlUT15wviAQ"  # Yahan apna bot token daalein
-OWNER_ID = "@Anshtrader12"  # Owner ka Telegram username (not link)
-VIP_CHANNEL = "https://t.me/your_vip_channel_link"  # VIP Channel ka actual link
-PUBLIC_CHANNEL = "https://t.me/learnansh87"  # Public Channel ka link
+TOKEN = "7889429106:AAEa73H5yR4kdVHj3jYevxgeFlUT15wviAQ"  # Bot token
+OWNER_ID = "6549618891"  # Owner's Telegram user ID
+VIP_CHANNEL = "https://t.me/your_vip_channel_link"  # VIP Channel link
+PUBLIC_CHANNEL = "https://t.me/learnansh87"  # Public Channel link
 
 def start(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
-    
+
     # Welcome Image (replace with your image URL)
-    image_url = "https://files.catbox.moe/f5skhs.jpg"  # Yahan apni image ka URL daalein
+    image_url = "https://files.catbox.moe/f5skhs.jpg"
     context.bot.send_photo(chat_id=chat_id, photo=image_url)
 
     # Welcome Message
@@ -18,8 +18,8 @@ def start(update: Update, context: CallbackContext):
 
     # Buttons
     keyboard = [
-        [InlineKeyboardButton("👤 Contact Owner", url=f"tg://user?id={OWNER_ID}")],  
-        [InlineKeyboardButton("🌟 VIP Channel", url=VIP_CHANNEL)],  
+        [InlineKeyboardButton("👤 Contact Owner", url=f"tg://user?id={OWNER_ID}")],
+        [InlineKeyboardButton("🌟 VIP Channel", callback_data="vip_channel")],  # Changed URL to callback_data
         [InlineKeyboardButton("📢 Public Channel", url=PUBLIC_CHANNEL)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -27,8 +27,11 @@ def start(update: Update, context: CallbackContext):
     # Send Message
     context.bot.send_message(chat_id=chat_id, text=welcome_text, reply_markup=reply_markup)
 
-def vip_channel(update: Update, context: CallbackContext):
-    # VIP Channel Message
+def vip_channel_callback(update: Update, context: CallbackContext):
+    """This function is triggered when VIP Channel button is clicked."""
+    query = update.callback_query
+    query.answer()  # Acknowledge button press
+
     vip_message = """
 🅱️🔡🔡🔡 🔡🔡🔡
 
@@ -50,15 +53,14 @@ def vip_channel(update: Update, context: CallbackContext):
 
 🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽
     """
-    chat_id = update.message.chat_id
-    context.bot.send_message(chat_id=chat_id, text=vip_message)
+    query.message.reply_text(vip_message)
 
 def main():
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
-    
+
     dp.add_handler(CommandHandler("start", start))
-    dp.add_handler(CommandHandler("vip_channel", vip_channel))  # VIP Channel button ke liye
+    dp.add_handler(CallbackQueryHandler(vip_channel_callback, pattern="vip_channel"))  # Handles VIP button click
 
     updater.start_polling()
     updater.idle()
