@@ -3,7 +3,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext
 
 TOKEN = "7889429106:AAEa73H5yR4kdVHj3jYevxgeFlUT15wviAQ"  # Yahan apna bot token daalein
 OWNER_ID = "https://t.me/@Anshtrader12"  # Owner ka direct Telegram link
-VIP_CHANNEL = "VIP_CHANNEL"  # VIP Channel ka link
+VIP_CHANNEL = ""https://t.me/YOUR_VIP_CHANNEL"  "  # VIP Channel ka link
 PUBLIC_CHANNEL = "https://t.me/learnansh87"  # Public Channel ka link
 
 def start(update: Update, context: CallbackContext):
