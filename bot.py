@@ -1,7 +1,7 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
-TOKEN = "YOUR_BOT_TOKEN"  # Yahan apna bot token daalein
+TOKEN = "7889429106:AAEa73H5yR4kdVHj3jYevxgeFlUT15wviAQ"  # Yahan apna bot token daalein
 OWNER_ID = "@Anshtrader12"  # Owner ka Telegram username (not link)
 VIP_CHANNEL = "https://t.me/your_vip_channel_link"  # VIP Channel ka actual link
 PUBLIC_CHANNEL = "https://t.me/learnansh87"  # Public Channel ka link
