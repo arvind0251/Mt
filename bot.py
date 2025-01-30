@@ -10,7 +10,7 @@ def start(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
     
     # Welcome Image (replace with your image URL)
-    image_url = "https://your-image-url.com/image.jpg"  # Yahan apni image ka URL daalein
+    image_url = "https://files.catbox.moe/f5skhs.jpg"  # Yahan apni image ka URL daalein
     context.bot.send_photo(chat_id=chat_id, photo=image_url)
 
     # Welcome Message
