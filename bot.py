@@ -2,7 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackContext, CallbackQueryHandler
 
 TOKEN = "7889429106:AAEa73H5yR4kdVHj3jYevxgeFlUT15wviAQ"  # Bot token
-OWNER_ID = "6549618891"  # Owner's Telegram user ID
+OWNER_USERNAME = "Anshtrader12"  # Owner's Telegram Username
 VIP_CHANNEL = "https://t.me/your_vip_channel_link"  # VIP Channel link
 PUBLIC_CHANNEL = "https://t.me/learnansh87"  # Public Channel link
 
@@ -18,8 +18,8 @@ def start(update: Update, context: CallbackContext):
 
     # Buttons
     keyboard = [
-        [InlineKeyboardButton("👤 Contact Owner", url=f"tg://user?id={OWNER_ID}")],
-        [InlineKeyboardButton("🌟 VIP Channel", callback_data="vip_channel")],  # Changed URL to callback_data
+        [InlineKeyboardButton("👤 Contact Owner", url=f"https://t.me/{OWNER_USERNAME}")],  # Fixed URL format
+        [InlineKeyboardButton("🌟 VIP Channel", callback_data="vip_channel")],  # Callback for VIP Message
         [InlineKeyboardButton("📢 Public Channel", url=PUBLIC_CHANNEL)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
@@ -28,7 +28,7 @@ def start(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=chat_id, text=welcome_text, reply_markup=reply_markup)
 
 def vip_channel_callback(update: Update, context: CallbackContext):
-    """This function is triggered when VIP Channel button is clicked."""
+    """VIP Channel button click hone par ye function chalega."""
     query = update.callback_query
     query.answer()  # Acknowledge button press
 
